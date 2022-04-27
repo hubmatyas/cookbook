@@ -1,9 +1,23 @@
 import logo from './res/logo.svg';
-import timeIcon from './res/icons/timeIcon.svg';
-import placeholder from './res/placeholder.jpg';
+import timeIcon from './res/icons/timeIcon.svg'
+import placeholder from './res/placeholder.jpg'
+import { useEffect, useState } from 'react'
 import './App.css';
 
 function App() {
+
+  const [backendData, setBackendData] = useState([{}])
+
+  useEffect(() => {
+    fetch("/api").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, [])
+
   return (
   <div className="content">
       <div className="container">
@@ -41,11 +55,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -57,11 +71,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -73,11 +87,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -89,11 +103,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -105,11 +119,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -121,11 +135,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -137,11 +151,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -153,11 +167,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -169,11 +183,11 @@ function App() {
               </figure>
               <strong className="name">TZATZIKI - originální řecký recept</strong>
               <div className="meta">
-                <div class="time">
+                <div className="time">
                   <img src={timeIcon} alt="#" />
                   <span>20 min</span>
                 </div>
-                <div class="category">
+                <div className="category">
                   <span>Předkrmy</span>
                 </div>
               </div>
@@ -182,6 +196,20 @@ function App() {
         </ul>
       </div>
     </section>
+
+    <section className="test-output">
+
+      {(typeof backendData.users === 'undefined') ? (
+        <p>Loading...</p>
+      ): (
+        backendData.users.map((user, i) => (
+          <p key={i}>{ user }</p>
+        ))
+      )}
+
+
+    </section>
+
 
     </div>
     <footer>
