@@ -1,8 +1,8 @@
 import logo from './res/logo.svg';
-import timeIcon from './res/icons/timeIcon.svg'
-import placeholder from './res/placeholder.jpg'
 import { useEffect, useState } from 'react'
 import './App.css';
+
+import PromoBox from './components/PromoBox';
 
 function App() {
 
@@ -46,155 +46,7 @@ function App() {
 
     <section className="itemsSection">
       <h2 className="sectionTitle">Všechny recepty</h2>
-      <div className="listItems">
-        <ul>
-        <li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li><li>
-            <a href="/" className="item">
-              <figure>
-                <img src={placeholder} alt="#" className="thumb" />
-              </figure>
-              <strong className="name">TZATZIKI - originální řecký recept</strong>
-              <div className="meta">
-                <div className="time">
-                  <img src={timeIcon} alt="#" />
-                  <span>20 min</span>
-                </div>
-                <div className="category">
-                  <span>Předkrmy</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
+      
     </section>
 
     <section className="test-output">
@@ -204,6 +56,14 @@ function App() {
       ): (
         backendData.users.map((user, i) => (
           <p key={i}>{ user }</p>
+        ))
+      )}
+
+      {(typeof backendData.recipes === 'undefined')? (
+        <p>Loading...</p>
+      ): (
+        backendData.recipes.map((item, i) => (
+          <PromoBox title={ item.title }  />
         ))
       )}
 
