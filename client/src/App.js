@@ -1,84 +1,27 @@
-import logo from './res/logo.svg';
-import { useEffect, useState } from 'react'
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import PromoBox from './components/PromoBox';
+import Layout from "./components/Layout";
+import Home from "./components/Home";
+import AddRecipe from "./components/Recipe/AddRecipe";
+import RecipeDetail from "./components/Recipe/RecipeDetail";
+import Recipes from "./components/Recipe/Recipes";
 
 function App() {
-
-  const [backendData, setBackendData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
-
   return (
-  <div className="content">
-      <div className="container">
-      <nav>
-        <a href="/" className="logo">
-          <img src={logo} alt="logo"/>
-        </a>
-        <ul className="navLinks">
-          <li>
-            <a href="/">Přidat recept</a>
-          </li><li>
-            <a href="/">Moje recepty</a>
-          </li><li>
-            <a href="/">Odhlásit se</a>
-          </li>
-          
-        </ul>
-    </nav>
-
-    <header>
-      <div className="headerBox">
-        <h1 className="title">Přispějte do naší databáze<br />řeckých receptů!</h1>
-        <a href="/" className="btn">Přidat recept</a>
-      </div>
-    </header>
-
-    <section className="itemsSection">
-      <h2 className="sectionTitle">Všechny recepty</h2>
-      
-    </section>
-
-    <section className="test-output">
-
-      {(typeof backendData.users === 'undefined') ? (
-        <p>Loading...</p>
-      ): (
-        backendData.users.map((user, i) => (
-          <p key={i}>{ user }</p>
-        ))
-      )}
-
-      {(typeof backendData.recipes === 'undefined')? (
-        <p>Loading...</p>
-      ): (
-        backendData.recipes.map((item, i) => (
-          <PromoBox title={ item.title }  />
-        ))
-      )}
-
-
-    </section>
-
-
-    </div>
-    <footer>
-    <p>Aplikace byla vytvořena v&nbsp;rámci předmětu Architektura Cloudových Aplikací</p>
-  </footer>
-
-  </div>
-
-
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />} exact>
+            <Route path="/" element={<Home />} exact />
+            <Route path="/add" element={<AddRecipe />} exact />
+            <Route path="/detail" element={<RecipeDetail />} exact />
+            <Route path="/recipes" element={<Recipes />} exact />
+            <Route path="/recipes/:id" element={<RecipeDetail />} exact />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

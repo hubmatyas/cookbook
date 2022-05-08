@@ -1,28 +1,21 @@
-const express = require('express')
+const express = require('express');
+const mongoose = require('mongoose');
+const router = require("./routes/recipe-routes");
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-app.get("/api", (req, res) => {
-	res.json({
-		"users": ["userOne", "userTwo", "userThree"],
-		"recipes": [
-			{
-				id: 1,
-				slug: "tzatziki",
-				title: "TZATZIKI - originální řecký recept",
-				prepTime: "20 min",
-				category: "předkrmy"
-			}, {
-				id: 2,
-				slug: "recept",
-				title: "Gulášek",
-				prepTime: "15 min",
-				category: "hlavní chod"
-			}
-		]
+//middlewares
+
+app.use(express.json());
+app.use(cors());
+app.use("/recipes", router);
+
+
+mongoose
+	.connect("mongodb+srv://bcaa_admin:z~xx2Z(M8+$m7>s,@cluster0.tz4ul.mongodb.net/CookBook?retryWrites=true&w=majority")
+	.then(() => console.log("Database has been connected."))
+	.then(() => {
+		app.listen(5000);
 	})
-})
-
-
-
-app.listen(5000, () => {console.log('Server started at port 5000.')})
+	.catch((err) => console.log(err));
