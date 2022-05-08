@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as EditIcon } from '../../res/icons/edit.svg'
+import { ReactComponent as DeleteIcon } from '../../res/icons/trash.svg'
 
 const Recipe = (props) => {
   const history = useNavigate();
@@ -16,18 +18,20 @@ const Recipe = (props) => {
 
   return (
     <>
-      <img src={image} alt={name} />
-      <p>By {author}</p>
+      <img className="thumb" src={image} alt={name} />
+      <p>Autor: {author}</p>
       <h3>{name}</h3>
       <p className="desc">{description}</p>
-      <p>{servingCount}</p>
-      <p>{rating}</p>
-      <Link className="btn" to={`/recipes/${_id}`}>
-        Update
-      </Link>
-      <Link onClick={deleteHandler} className="btn" to="">
-        Delete
-      </Link>
+      <p>Počet porcí: {servingCount}</p>
+      <p>Hodnocení: {rating}</p>
+      <div className="tools">
+        <Link className="btn" to={`/recipes/${_id}`}>
+          <EditIcon />
+        </Link>
+        <Link onClick={deleteHandler} className="btn red" to="">
+          <DeleteIcon />
+        </Link>
+      </div>
     </>
   );
 };

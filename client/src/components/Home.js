@@ -4,7 +4,7 @@ import Recipes from "./Recipe/Recipes";
 const Home = () => {
   return (
     <>
-      <header>
+      <header className="landing-header">
         <div className="wrapper">
           <div className="headerBox">
             <h1 className="title">

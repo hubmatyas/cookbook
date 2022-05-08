@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AddRecipe = () => {
   const history = useNavigate();
@@ -62,9 +62,11 @@ const AddRecipe = () => {
       </div>
       <div className="form-control">
         <label>Description</label>
-        <input
+        <textarea
           name="description"
           type="text"
+          rows="8"
+          cols="60"
           value={inputs.description}
           onChange={handleChange}
         />
@@ -96,6 +98,9 @@ const AddRecipe = () => {
           onChange={handleChange}
         />
       </div>
+      <Link type="submit" class="btn grey submit" to="/recipes">
+        Cancel
+      </Link>
       <button type="submit" class="btn submit">
         Add recipe
       </button>
