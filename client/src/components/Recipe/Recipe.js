@@ -18,20 +18,24 @@ const Recipe = (props) => {
 
   return (
     <>
-      <img className="thumb" src={image} alt={name} />
-      <p>Autor: {author}</p>
-      <h3>{name}</h3>
-      <p className="desc">{description}</p>
-      <p>Počet porcí: {servingCount}</p>
-      <p>Hodnocení: {rating}</p>
-      <div className="tools">
-        <Link className="btn" to={`/recipes/${_id}`}>
-          <EditIcon />
-        </Link>
-        <Link onClick={deleteHandler} className="btn red" to="">
-          <DeleteIcon />
-        </Link>
-      </div>
+      <Link className="recipe-promo" to={`/recipes/${_id}`}>
+        <img className="thumb" src={image} alt={name} />
+        <div className="props">
+          <p>Autor: {author}</p>
+          <h3>{name}</h3>
+          <p className="desc">{description}</p>
+          <p>Počet porcí: {servingCount}</p>
+          <p>Hodnocení: {rating}</p>
+        </div>
+        <div className="tools">
+          <Link className="btn" to={`/edit/${_id}`}>
+            <EditIcon />
+          </Link>
+          <Link onClick={deleteHandler} className="btn red" to="">
+            <DeleteIcon />
+          </Link>
+        </div>
+      </Link>
     </>
   );
 };

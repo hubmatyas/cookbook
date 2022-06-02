@@ -4,10 +4,6 @@ import { useParams, useNavigate } from "react-router-dom"
 
 const RecipeDetail = () => {
 
-  useEffect(() => {
-    window.scrollTo(0,0)
-  }, [])
-
   const [inputs, setInputs] = useState({});
 
   const id = useParams().id;
@@ -15,6 +11,9 @@ const RecipeDetail = () => {
   const history = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0,0)
+
+    // Fetch data from database using axios
     const fetchHandler = async (req, res, next) => {
       await axios
         .get(`http://localhost:5000/recipes/${id}`)

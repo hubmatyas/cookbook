@@ -21,9 +21,7 @@ const Recipes = () => {
     <div className="recipes-wrapper">
       {recipes &&
         recipes.map((recipe, i) => (
-          <div className="recipe-promo" key={i}>
             <Recipe recipe={recipe} />
-          </div>
         ))}
     </div>
   );
