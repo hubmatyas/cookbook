@@ -14,6 +14,9 @@ const Layout = () => {
               <NavLink to="/recipes">Recepty</NavLink>
             </li>
             <li>
+              <NavLink to="/ingredients">Ingredience</NavLink>
+            </li>
+            <li>
               <NavLink to="/add">Přidat recept</NavLink>
             </li>
           </ul>
