@@ -22,6 +22,7 @@ const RecipeDetail = () => {
 			.then((data) => setRecipeData(data.recipe));
 		};
 		fetchHandler().then((data) => setRecipeData(data.recipe));
+
 	  }, [params.id]);
 
   return (

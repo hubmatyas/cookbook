@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import Recipes from "./Recipe/Recipes";
+import RecipesList from "./Recipe/RecipesList";
 
 const Home = () => {
+
   return (
     <>
       <header className="landing-header">
@@ -19,12 +20,7 @@ const Home = () => {
         </div>
       </header>
 
-      <section className="itemsSection">
-        <div className="wrapper">
-          <h2 className="sectionTitle">Všechny recepty</h2>
-          <Recipes />
-        </div>
-      </section>
+      <RecipesList />
     </>
   );
 };

@@ -164,12 +164,49 @@ section {
   padding: 3.2rem 0;
 }
 
-section .sectionTitle {
+.sectionTitle {
   font-size: 3.2rem;
   line-height: 1.1;
   font-weight: 500;
   color: var(--primary);
   font-family: "Oswald";
+}
+
+.title-wrapper-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 4.6rem;
+}
+
+.searchbar {
+  padding: 0.25rem 1.2rem;
+  border: 0.1rem solid var(--primary);
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+}
+.searchbar svg {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.4rem;
+  height: auto;
+}
+.searchbar svg path {
+  fill: var(--primary);
+}
+
+.searchbar input {
+  border: none;
+  background: transparent;
+  padding-left: 1.2rem;
+}
+.searchbar input:focus {
+  border: none;
+  background: transparent;
+  outline: none;
 }
 
 footer {
