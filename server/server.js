@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const router = require("./routes/recipe-routes");
+const recipeRouter = require("./routes/recipe-routes");
+const ingredientRouter = require("./routes/ingredient-routes");
 const cors = require('cors');
 
 const app = express();
@@ -9,7 +10,8 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use("/recipes", router);
+app.use("/recipes", recipeRouter);
+app.use("/ingredients", ingredientRouter);
 
 
 mongoose
