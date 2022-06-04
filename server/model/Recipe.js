@@ -19,10 +19,6 @@ const recipeSchema = new Schema({
     type: Number,
     required: true,
   },
-  rating: {
-    type: Number,
-    required: true,
-  },
   instructions: {
     type: String,
     required: false,
@@ -36,6 +32,10 @@ const recipeSchema = new Schema({
     required: true,
   },
   category: {
+    type: String,
+    required: true,
+  },
+  difficulty: {
     type: String,
     required: true,
   },

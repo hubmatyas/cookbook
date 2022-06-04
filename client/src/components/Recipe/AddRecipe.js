@@ -9,12 +9,12 @@ const AddRecipe = () => {
     name: "",
     author: "",
     description: "",
-    rating: "",
     image: "",
     servingCount: "",
     prepTime: "",
     ingredient: "",
     category: "",
+    difficulty: "",
   });
 
   const handleChange = (e) => {
@@ -30,12 +30,12 @@ const AddRecipe = () => {
         name: String(inputs.name),
         author: String(inputs.author),
         description: String(inputs.description),
-        rating: Number(inputs.rating),
         prepTime: Number(inputs.prepTime),
         image: String(inputs.image),
         servingCount: String(inputs.servingCount),
         ingredient: String(inputs.ingredient),
         category: String(inputs.category),
+        difficulty: String(inputs.difficulty),
       })
       .then((res) => res.data);
   };
@@ -50,7 +50,7 @@ const AddRecipe = () => {
       <h1 className="sectionTitle">Přidat recept</h1>
         <form className="add-product-form" onSubmit={handleSubmit} >
           <div className="form-control">
-            <label>Name</label>
+            <label>Název</label>
             <input
               name="name"
               type="text"
@@ -59,7 +59,7 @@ const AddRecipe = () => {
             />
           </div>
           <div className="form-control">
-            <label>Author</label>
+            <label>Autor</label>
             <input
               name="author"
               type="text"
@@ -68,7 +68,7 @@ const AddRecipe = () => {
             />
           </div>
           <div className="form-control wide">
-            <label>Description</label>
+            <label>Popisek</label>
             <textarea
               name="description"
               type="text"
@@ -79,7 +79,7 @@ const AddRecipe = () => {
             />
           </div>
         <div className="form-control">
-          <label>Image</label>
+          <label>URL Obrázku</label>
           <input
             name="image"
             type="text"
@@ -88,25 +88,18 @@ const AddRecipe = () => {
           />
         </div>
         <div className="form-control">
-          <label>Rating</label>
-          <input
-            name="rating"
-            type="number"
-            value={inputs.rating}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-control">
           <label>Čas přípravy</label>
           <input
             name="prepTime"
             type="number"
-            value={inputs.rating}
+            min="0"
+            max="1000"
+            value={inputs.prepTime}
             onChange={handleChange}
           />
         </div>
         <div className="form-control">
-          <label>Serving count</label>
+          <label>Počet porcí</label>
           <input
             name="servingCount"
             type="number"
@@ -115,7 +108,7 @@ const AddRecipe = () => {
           />
         </div>
         <div className="form-control">
-          <label>Serving count</label>
+          <label>Kategorie</label>
           <select
           name="category"
           type="text"
@@ -126,11 +119,22 @@ const AddRecipe = () => {
             <option>Dezert</option>
           </select>
         </div>
+        <div className="form-control">
+          <label>Obtížnost</label>
+          <select
+          name="difficulty"
+          type="text"
+          onChange={handleChange}>
+            <option>Začátečník</option>
+            <option>Pokročilý</option>
+            <option>Expert</option>
+          </select>
+        </div>
         <Link className="btn grey submit" to="/recipes">
-          Cancel
+          Zrušit
         </Link>
         <button type="submit" className="btn submit" onClick={handleSubmit}>
-          Add recipe
+          Přidat
         </button>
       </form>
     </section>

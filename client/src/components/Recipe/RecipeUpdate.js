@@ -29,9 +29,9 @@ const RecipeDetail = () => {
         name: String(inputs.name),
         author: String(inputs.author),
         description: String(inputs.description),
-        rating: Number(inputs.rating),
         image: String(inputs.image),
         servingCount: String(inputs.servingCount),
+        difficulty: String(inputs.difficulty),
       })
       .then((res) => res.data);
   };
@@ -50,16 +50,12 @@ const RecipeDetail = () => {
 
   return (
     <>
-      <header>
-        <h1 className="product-title"></h1>
-        <p className="product-description"></p>
-      </header>
       <section className="container">
         <div className="wrapper">
           {inputs && (
             <form className="add-product-form" onSubmit={handleSubmit}>
               <div className="form-control">
-                <label>Name</label>
+                <label>Název</label>
                 <input
                   name="name"
                   type="text"
@@ -68,7 +64,7 @@ const RecipeDetail = () => {
                 />
               </div>
               <div className="form-control">
-                <label>Author</label>
+                <label>Autor</label>
                 <input
                   name="author"
                   type="text"
@@ -77,7 +73,7 @@ const RecipeDetail = () => {
                 />
               </div>
               <div className="form-control">
-                <label>Description</label>
+                <label>Popisek</label>
                 <textarea
                   name="description"
                   type="text"
@@ -88,7 +84,7 @@ const RecipeDetail = () => {
                 />
               </div>
               <div className="form-control">
-                <label>Image</label>
+                <label>URL Obrázku</label>
                 <input
                   name="image"
                   type="text"
@@ -97,25 +93,53 @@ const RecipeDetail = () => {
                 />
               </div>
               <div className="form-control">
-                <label>Rating</label>
-                <input
-                  name="rating"
-                  type="number"
-                  value={inputs.rating}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-control">
-                <label>Serving count</label>
+                <label>Počet porcí</label>
                 <input
                   name="servingCount"
                   type="number"
+                  min="0"
+                  max="1000"
                   value={inputs.servingCount}
                   onChange={handleChange}
                 />
               </div>
+              <div className="form-control">
+                <label>Čas přípravy</label>
+                <input
+                  name="prepTime"
+                  type="number"
+                  min="0"
+                  max="1000"
+                  value={inputs.prepTime}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-control">
+                 <label>Kategorie</label>
+                 <select
+                 name="category"
+                 type="text"
+                 value={inputs.category}
+                 onChange={handleChange}>
+                   <option>Předkrm</option>
+                   <option>Hlavní chod</option>
+                   <option>Dezert</option>
+                 </select>
+               </div>
+               <div className="form-control">
+                 <label>Obtížnost</label>
+                 <select
+                 name="difficulty"
+                 type="text"
+                 value={inputs.category}
+                 onChange={handleChange}>
+                   <option>Začátečník</option>
+                   <option>Pokročilý</option>
+                   <option>Expert</option>
+                 </select>
+               </div>
               <button type="submit" class="btn submit">
-                Update recipe
+                Aktualizovat
               </button>
             </form>
           )}
