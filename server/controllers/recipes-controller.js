@@ -37,7 +37,6 @@ const addRecipe = async (req, res, next) => {
     author,
     description,
     servingCount,
-    instructions,
     image,
     ingredient,
     category,
@@ -50,11 +49,10 @@ const addRecipe = async (req, res, next) => {
       author,
       description,
       servingCount,
-      instructions,
       image,
-      ingredient,
       category,
       difficulty,
+      ingredients
     });
     await recipe.save();
   } catch (err) {
@@ -74,9 +72,8 @@ const updateRecipe = async (req, res, next) => {
     author,
     description,
     servingCount,
-    instructions,
     image,
-    ingredient,
+    ingredients,
     category,
     difficulty,
   } = req.body;
@@ -87,9 +84,8 @@ const updateRecipe = async (req, res, next) => {
       author,
       description,
       servingCount,
-      instructions,
       image,
-      ingredient,
+      ingredients,
       category,
       difficulty,
     });

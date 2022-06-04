@@ -34,7 +34,6 @@ const IngredientsList = () => {
               <span>Jednotka: <strong>{ ingredient.unit }</strong></span>
             </Link>
           )}
-         
         </div>
       </section>
     </>

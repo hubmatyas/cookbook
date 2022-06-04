@@ -17,7 +17,7 @@ const Recipe = (props) => {
   };
 
   return (
-    <>
+    <div className="recipe-promo-box">
       <Link className="recipe-promo" to={`/recipes/${_id}`}>
         <img className="thumb" src={image} alt={name} loading="lazy"/>
         <div className="props">
@@ -26,16 +26,16 @@ const Recipe = (props) => {
           <p className="desc">{description}</p>
           <p>Obtížnost: {difficulty}</p>
         </div>
-        <div className="tools">
+      </Link>
+      <div className="tools">
           <Link className="btn" to={`/recipes/edit/${_id}`}>
             <EditIcon />
           </Link>
           <Link onClick={deleteHandler} className="btn red" to="">
             <DeleteIcon />
           </Link>
-        </div>
-      </Link>
-    </>
+      </div>
+    </div>
   );
 };
 

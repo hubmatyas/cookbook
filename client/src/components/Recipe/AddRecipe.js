@@ -1,11 +1,20 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { ReactComponent as DeleteIcon } from '../../res/icons/trash.svg';
 
 const AddRecipe = () => {
   const history = useNavigate();
 
   const [ingredients, setIngredients] = useState();
+
+  const [preparedIngredients, setPreparedIngredients] = useState([
+    {
+      name: "",
+      unit: "",
+      count: ""
+    }
+  ]);
 
   const URL = "http://localhost:5000/ingredients";
 
@@ -24,7 +33,13 @@ const AddRecipe = () => {
     image: "",
     servingCount: "",
     prepTime: "",
-    ingredient: "",
+    ingredients: [
+      {
+        name: '',
+        count: '',
+        unit: '',
+      },
+    ],
     category: "",
     difficulty: "",
   });
@@ -36,6 +51,16 @@ const AddRecipe = () => {
     }));
   };
 
+  const [ingredientFields, setIngredientFields] = useState([
+    { name: "", count: "" },
+  ]);
+
+  const handleIngredientChange = (i, e) => {
+    let ingredientData = [...ingredientFields];
+    ingredientData[i][e.target.name] = e.target.value;
+    setIngredientFields(ingredientData);
+ }
+
   const addIngredientFields = (e) => {
     e.preventDefault();
     let newIngredientField = {name: "", unit: ""};
@@ -43,9 +68,11 @@ const AddRecipe = () => {
     setIngredientFields([...ingredientFields, newIngredientField])
   }
 
-  const [ingredientFields, setIngredientFields] = useState([
-    { name: "", unit: "" },
-  ]);
+  const removeIngredientField = (i) => {
+    let ingredientData = [...ingredientFields];
+    ingredientData.splice(i, 1)
+    setIngredientFields(i)
+  }
 
   const sendRequest = async () => {
     await axios
@@ -56,15 +83,16 @@ const AddRecipe = () => {
         prepTime: Number(inputs.prepTime),
         image: String(inputs.image),
         servingCount: String(inputs.servingCount),
-        ingredients: String(inputs.ingredient),
         category: String(inputs.category),
         difficulty: String(inputs.difficulty),
+        ingredients: Array(ingredientFields)
       })
       .then((res) => res.data);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setPreparedIngredients()
     sendRequest().then(() => history("/recipes"));
   };
 
@@ -89,6 +117,14 @@ const AddRecipe = () => {
             value={inputs.author}
             onChange={handleChange}
           />
+        </div>
+        <div className="form-control">
+          <label>Obtížnost</label>
+          <select name="difficulty" type="text" onChange={handleChange}>
+            <option value="beginner">Začátečník</option>
+            <option value="advanced">Pokročilý</option>
+            <option value="expert">Expert</option>
+          </select>
         </div>
         <div className="form-control wide">
           <label>Popisek</label>
@@ -143,39 +179,31 @@ const AddRecipe = () => {
             <option>Dezert</option>
           </select>
         </div>
-        <div className="form-control">
-          <label>Obtížnost</label>
-          <select name="difficulty" type="text" onChange={handleChange}>
-            <option>Začátečník</option>
-            <option>Pokročilý</option>
-            <option>Expert</option>
-          </select>
-        </div>
         <div className="form-control full-width">
           <label>Ingredience</label>
-          {ingredientFields.map((ingredientField, index) => {
+          {ingredientFields.map((ingredientField, i) => {
               return (
-                <div class="dynamic-inputs">
-                <input type="number" min="0" max="10000" />
-                <select 
-                key={index}
-                name="category"
-                type="text"
-                value={inputs.category}
-                onChange={handleChange}
-                >
-                  {ingredients &&
-                    ingredients.map((ingredient, index) => (
-                      <option name={index} key={ingredient._id}>
-                        {ingredient.name + ' (' + ingredient.unit + ')'}
-                      </option>
-                  ))}
-                </select>
+                <div className="dynamic-inputs" key={i}>
+                  <i>{i + 1}</i>
+                  <input name={'count' + i} type="number" min="0" max="10000" />
+                  <select 
+                  name={'ingredient' + i}
+                  type="text"
+                  onChange={e => handleIngredientChange(e, i)}
+                  >
+                    {ingredients &&
+                      ingredients.map((ingredient, i) => (
+                        <option name={i} key={ingredient._id} onChange={e => handleIngredientChange(e, i)}>
+                          {ingredient.name + ' (' + ingredient.unit + ')'}
+                        </option>
+                    ))}
+                  </select>
+                  <button onClick={removeIngredientField()} className="btn btn-icon red"><DeleteIcon /></button>
                 </div>
               )
             })}
+          <button className="btn btn-round" onClick={addIngredientFields}>Přidat ingredienci</button>
         </div>
-          <button onClick={addIngredientFields}>Přidat ingredienci</button>
         <div className="btn-wrapper">
           <Link className="btn grey submit" to="/recipes">
             Zrušit

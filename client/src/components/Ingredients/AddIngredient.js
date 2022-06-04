@@ -8,6 +8,7 @@ const AddIngredient = () => {
   const [inputs, setInputs] = useState({
     name: "",
     unit: "",
+    count: ""
   });
 
 
@@ -56,7 +57,7 @@ const AddIngredient = () => {
               value={inputs.unit}
               required
             >
-                <option value="">Vyberte jednotku</option>
+                <option>Vyberte jednotku</option>
                 <option value="g">g</option>
                 <option value="ml">ml</option>
                 <option value="ks">ks</option>

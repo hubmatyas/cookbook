@@ -19,18 +19,28 @@ const recipeSchema = new Schema({
     type: Number,
     required: true,
   },
-  instructions: {
-    type: String,
-    required: false,
-  },
   image: {
     type: String,
     required: true,
   },
-  ingredient: {
-    type: String,
-    required: true,
-  },
+  ingredients: [
+    {
+      type: Object,
+      required: false,
+      name: {
+        type: String,
+        required: true,
+      },
+      unit: {
+        type: String,
+        required: true,
+      },
+      count: {
+        type: Number,
+        required: true,
+      }
+    }
+  ],
   category: {
     type: String,
     required: true,

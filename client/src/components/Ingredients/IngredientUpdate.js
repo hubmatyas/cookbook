@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { ReactComponent as DeleteIcon } from '../../res/icons/trash.svg'
 
 const IngredientUpdate = () => {
 
@@ -10,8 +11,17 @@ const IngredientUpdate = () => {
 
   const history = useNavigate();
 
-  useEffect(() => {
+  const deleteHandler = async (ingredientsName) => {
+    await axios
+      .delete(`http://localhost:5000/ingredients/${id}`)
+      .then((res) => res.data)
+      .then(() => history("/"))
+      .then(() => history("/ingredients"));
 
+      alert('ingredience byla odstraněna!')
+  };
+
+  useEffect(() => {
     // Fetch data from database using axios
     const fetchHandler = async (req, res, next) => {
       await axios
@@ -22,7 +32,7 @@ const IngredientUpdate = () => {
     fetchHandler().then((data) => setInputs(data.ingredient));
   }, [id]);
 
-  const sendRequest = async () => {
+  const sendRequest = async (targetId) => {
     await axios
       .put(`http://localhost:5000/ingredients/${id}`, {
         name: String(inputs.name),
@@ -46,7 +56,9 @@ const IngredientUpdate = () => {
   return (
     <>
       <section className="subpage-wrapper">
-      <h1 className="sectionTitle">Úprava ingredience: { inputs.name }</h1>
+      <div className="title-wrapper-flex">
+            <h1 className="sectionTitle">Úprava ingredience: { inputs.name }</h1>
+        </div>
           {inputs && (
             <form className="add-product-form" onSubmit={handleSubmit}>
               <div className="form-control">
@@ -71,9 +83,12 @@ const IngredientUpdate = () => {
                     <option>ks</option>
                 </select>
               </div>
+              <div className="btn-wrapper">
+              <button onClick={deleteHandler} className="btn btn-icon red"><DeleteIcon /></button>
               <button type="submit" class="btn submit">
                 Aktualizovat
               </button>
+              </div>
             </form>
           )}
       </section>

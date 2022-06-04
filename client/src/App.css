@@ -83,6 +83,26 @@ a.btn {
 .btn.nomargin {
   margin: 0;
 }
+.btn-icon {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  width: max-content;
+  height: auto;
+  aspect-ratio: 1/1;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-icon svg {
+  width: 3.2rem;
+}
+.btn-icon svg path {
+  fill: #fff;
+}
+
 .btn.grey,
 .btn.gray {
   background: #6e6e6e;
@@ -272,7 +292,7 @@ footer {
 .add-product-form .form-control select {
   display: block;
   width: 100%;
-  max-width: 21rem;
+  max-width: 24rem;
 }
 
 .add-product-form .form-control label {
@@ -288,20 +308,38 @@ footer {
   border-radius: 0.4rem;
   resize: none;
   width: 100%;
+  transition: 0.3s ease-out;
 }
 .add-product-form .form-control input:focus,
 .add-product-form .form-control textarea:focus,
 .add-product-form .form-control select:focus {
   outline: none;
-  border: 0.15rem solid var(--primary);
-  background: none;
+  border: 0.15rem solid var(--primary-light);
+  background: rgba(61, 91, 169, 0.05);
 }
 
 .dynamic-inputs {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   column-gap: 0.8rem;
+}
+.dynamic-inputs i {
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem 1rem 0.3rem 1rem;
+  width: auto;
+  background: var(--primary);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  aspect-ratio: 1/1;
+  font-style: normal;
+  font-size: 0.8em;
+  vertical-align: middle;
 }
 
 .recipes-wrapper {
@@ -316,7 +354,7 @@ footer {
   padding-top: 8.2rem;
 }
 
-.recipe-promo {
+.recipe-promo-box {
   position: relative;
 }
 .recipe-promo .thumb {
@@ -332,7 +370,7 @@ footer {
   padding: 1em;
 }
 
-.recipe-promo .tools {
+.recipe-promo-box .tools {
   position: absolute;
   top: -1.2rem;
   right: -1.2rem;
@@ -347,12 +385,12 @@ footer {
   -o-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
-.recipe-promo:hover .tools {
+.recipe-promo-box:hover .tools {
   visibility: visible;
   opacity: 1;
 }
 
-.recipe-promo .tools .btn {
+.recipe-promo-box .tools .btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -376,11 +414,11 @@ footer {
   -o-transition: inherit;
   transition: inherit;
 }
-.recipe-promo .tools .btn:hover {
+.recipe-promo-box .tools .btn:hover {
   -webkit-filter: brightness(95%);
   filter: brightness(95%);
 }
-.recipe-promo .tools .btn svg {
+.recipe-promo-box .tools .btn svg {
   width: 60%;
   fill: #000;
 }

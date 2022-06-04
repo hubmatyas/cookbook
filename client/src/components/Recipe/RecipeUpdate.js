@@ -1,5 +1,5 @@
-import axios from "axios"
 import React, { useEffect, useState } from "react"
+import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
 
 const RecipeDetail = () => {
@@ -11,8 +11,6 @@ const RecipeDetail = () => {
   const history = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0,0)
-
     // Fetch data from database using axios
     const fetchHandler = async (req, res, next) => {
       await axios

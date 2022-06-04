@@ -1,7 +1,17 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import logo from "../res/logo.svg";
 
 const Layout = () => {
+
+
+  const location = useLocation();
+  useEffect(() => {
+    // Go to the top of the page when location changes
+    window.scrollTo(0,0);
+  }, [location])
+  
+
   return (
     <>
       <nav>
