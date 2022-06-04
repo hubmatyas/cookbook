@@ -1,8 +1,8 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
-const Ingredients = () => {
+const IngredientsList = () => {
 
 
   const id = useParams().id;
@@ -31,13 +31,12 @@ const Ingredients = () => {
         <p className="product-description"></p>
       </header>
       <section className="container">
-        <div className="wrapper">
+        <div className="wrapper ingredients-wrapper">
           {ingredients && ingredients.map((ingredient) =>
-            <>
-              <p>{ingredient.name}</p>
-              <p>{ingredient.unit}</p>
-              <br />
-            </>
+            <Link className="ingredient-promo" to={`/ingredients/${ingredient._id}`} title="Upravit">
+              <strong>{ ingredient.name }</strong><br />
+              <span>Unit: <strong>{ ingredient.unit }</strong></span>
+            </Link>
           )}
          
         </div>
@@ -46,4 +45,4 @@ const Ingredients = () => {
   );
 };
 
-export default Ingredients;
+export default IngredientsList;

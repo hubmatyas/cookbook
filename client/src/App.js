@@ -7,7 +7,8 @@ import AddRecipe from "./components/Recipe/AddRecipe";
 import RecipeUpdate from "./components/Recipe/RecipeUpdate";
 import RecipeDetail from "./components/Recipe/RecipeDetail";
 import RecipesList from "./components/Recipe/RecipesList";
-import Ingredients from "./components/Ingredients/Ingredients";
+import IngredientsList from "./components/Ingredients/IngredientsList";
+import IngredientUpdate from "./components/Ingredients/IngredientUpdate";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
             <Route path="/recipes" element={<RecipesList />} exact />
             <Route path="/recipes/:id" element={<RecipeDetail />} exact />
             <Route path="/edit/:id" element={<RecipeUpdate />} exact />
-            <Route path="/ingredients" element={<Ingredients />} exact />
+            <Route path="/ingredients" element={<IngredientsList />} exact />
+            <Route path="/ingredients/:id" element={<IngredientUpdate />} exact />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -57,7 +57,7 @@ const RecipeDetail = () => {
       <section className="container">
         <div className="wrapper">
           {inputs && (
-            <form className="add-recipe-form" onSubmit={handleSubmit}>
+            <form className="add-product-form" onSubmit={handleSubmit}>
               <div className="form-control">
                 <label>Name</label>
                 <input

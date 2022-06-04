@@ -40,6 +40,8 @@ const addRecipe = async (req, res, next) => {
     rating,
     instructions,
     image,
+    ingredient,
+    category,
   } = req.body;
   let recipe;
   try {
@@ -51,6 +53,8 @@ const addRecipe = async (req, res, next) => {
       rating,
       instructions,
       image,
+      ingredient,
+      category,
     });
     await recipe.save();
   } catch (err) {
@@ -73,6 +77,8 @@ const updateRecipe = async (req, res, next) => {
     rating,
     instructions,
     image,
+    ingredient,
+    category,
   } = req.body;
   let recipe;
   try {
@@ -84,6 +90,8 @@ const updateRecipe = async (req, res, next) => {
       rating,
       instructions,
       image,
+      ingredient,
+      category,
     });
     recipe = await recipe.save();
   } catch (err) {

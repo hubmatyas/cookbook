@@ -13,6 +13,8 @@ const AddRecipe = () => {
     image: "",
     servingCount: "",
     prepTime: "",
+    ingredient: "",
+    category: "",
   });
 
   const handleChange = (e) => {
@@ -32,6 +34,8 @@ const AddRecipe = () => {
         prepTime: Number(inputs.prepTime),
         image: String(inputs.image),
         servingCount: String(inputs.servingCount),
+        ingredient: String(inputs.ingredient),
+        category: String(inputs.category),
       })
       .then((res) => res.data);
   };
@@ -44,7 +48,7 @@ const AddRecipe = () => {
   return (
     <section className="subpage-wrapper">
       <h1 className="sectionTitle">Přidat recept</h1>
-        <form className="add-recipe-form" onSubmit={handleSubmit} >
+        <form className="add-product-form" onSubmit={handleSubmit} >
           <div className="form-control">
             <label>Name</label>
             <input
@@ -109,6 +113,18 @@ const AddRecipe = () => {
             value={inputs.servingCount}
             onChange={handleChange}
           />
+        </div>
+        <div className="form-control">
+          <label>Serving count</label>
+          <select
+          name="category"
+          type="text"
+          value={inputs.category}
+          onChange={handleChange}>
+            <option>Předkrm</option>
+            <option>Hlavní chod</option>
+            <option>Dezert</option>
+          </select>
         </div>
         <Link className="btn grey submit" to="/recipes">
           Cancel
