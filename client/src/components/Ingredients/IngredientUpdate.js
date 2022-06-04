@@ -11,7 +11,6 @@ const IngredientUpdate = () => {
   const history = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0,0)
 
     // Fetch data from database using axios
     const fetchHandler = async (req, res, next) => {

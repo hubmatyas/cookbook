@@ -111,10 +111,8 @@ main {
   min-height: 100vh;
 }
 nav {
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
+  display: block;
+  width: 100%;
   background: #fff;
   padding: 1.2rem 0;
   z-index: 10;
@@ -254,18 +252,27 @@ footer {
 }
 .add-product-form .form-control {
   position: relative;
-  display: block;
   width: 100%;
   grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 1.2rem;
+}
+.add-product-form .form-control.full-width {
+  grid-column: span 6;
 }
 .add-product-form .form-control.wide {
   grid-column: span 3;
 }
 
 .add-product-form .form-control label,
-.add-product-form .form-control input {
+.add-product-form .form-control input,
+.add-product-form .form-control select {
   display: block;
   width: 100%;
+  max-width: 21rem;
 }
 
 .add-product-form .form-control label {
@@ -288,6 +295,13 @@ footer {
   outline: none;
   border: 0.15rem solid var(--primary);
   background: none;
+}
+
+.dynamic-inputs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 0.8rem;
 }
 
 .recipes-wrapper {

@@ -53,9 +53,10 @@ const AddIngredient = () => {
               name="unit"
               onChange={handleChange}
               type="text"
-              value="g"
+              value={inputs.unit}
               required
             >
+                <option value="">Vyberte jednotku</option>
                 <option value="g">g</option>
                 <option value="ml">ml</option>
                 <option value="ks">ks</option>

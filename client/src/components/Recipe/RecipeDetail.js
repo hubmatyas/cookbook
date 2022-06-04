@@ -10,9 +10,6 @@ const RecipeDetail = () => {
 
 
 	useEffect(() => {
-		// Go to top of the page on page load
-		window.scrollTo(0,0);
-
 
 		// Fetch data from database using axios
 		const fetchHandler = async (req, res, next) => {
@@ -34,7 +31,6 @@ const RecipeDetail = () => {
 				<p>Description: { recipeData.description }</p>
 				<img src={ recipeData.image } alt={recipeData.name + ' - hlavní obrázek'} loading="lazy"/>
 				<p>Rating: { recipeData.rating }</p>
-				<p>Serving count: { recipeData.servingCount }</p>
 			</div>
 
 			<div className='article'>

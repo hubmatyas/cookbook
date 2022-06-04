@@ -5,7 +5,7 @@ import { ReactComponent as DeleteIcon } from '../../res/icons/trash.svg'
 
 const Recipe = (props) => {
   const history = useNavigate();
-  const { _id, name, author, description, servingCount, rating, image } =
+  const { _id, name, author, description, image, difficulty } =
     props.recipe;
 
   const deleteHandler = async () => {
@@ -24,11 +24,10 @@ const Recipe = (props) => {
           <p>Autor: {author}</p>
           <h3>{name}</h3>
           <p className="desc">{description}</p>
-          <p>Počet porcí: {servingCount}</p>
-          <p>Hodnocení: {rating}</p>
+          <p>Obtížnost: {difficulty}</p>
         </div>
         <div className="tools">
-          <Link className="btn" to={`/edit/${_id}`}>
+          <Link className="btn" to={`/recipes/edit/${_id}`}>
             <EditIcon />
           </Link>
           <Link onClick={deleteHandler} className="btn red" to="">

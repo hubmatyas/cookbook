@@ -1,9 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const AddRecipe = () => {
   const history = useNavigate();
+
+  const [ingredients, setIngredients] = useState();
+
+  const URL = "http://localhost:5000/ingredients";
+
+  const fetchHandler = async () => {
+    return await axios.get(URL).then((res) => res.data);
+  };
+
+  useEffect(() => {
+    fetchHandler().then((data) => setIngredients(data.ingredients));
+  }, []);
 
   const [inputs, setInputs] = useState({
     name: "",
@@ -23,6 +35,17 @@ const AddRecipe = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const addIngredientFields = (e) => {
+    e.preventDefault();
+    let newIngredientField = {name: "", unit: ""};
+
+    setIngredientFields([...ingredientFields, newIngredientField])
+  }
+
+  const [ingredientFields, setIngredientFields] = useState([
+    { name: "", unit: "" },
+  ]);
 
   const sendRequest = async () => {
     await axios
@@ -48,36 +71,36 @@ const AddRecipe = () => {
   return (
     <section className="subpage-wrapper">
       <h1 className="sectionTitle">Přidat recept</h1>
-        <form className="add-product-form" onSubmit={handleSubmit} >
-          <div className="form-control">
-            <label>Název receptu</label>
-            <input
-              name="name"
-              type="text"
-              value={inputs.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-control">
-            <label>Autor</label>
-            <input
-              name="author"
-              type="text"
-              value={inputs.author}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-control wide">
-            <label>Popisek</label>
-            <textarea
-              name="description"
-              type="text"
-              rows="8"
-              cols="60"
-              value={inputs.description}
-              onChange={handleChange}
-            />
-          </div>
+      <form className="add-product-form" onSubmit={handleSubmit}>
+        <div className="form-control">
+          <label>Název receptu</label>
+          <input
+            name="name"
+            type="text"
+            value={inputs.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-control">
+          <label>Autor</label>
+          <input
+            name="author"
+            type="text"
+            value={inputs.author}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-control wide">
+          <label>Popisek</label>
+          <textarea
+            name="description"
+            type="text"
+            rows="8"
+            cols="60"
+            value={inputs.description}
+            onChange={handleChange}
+          />
+        </div>
         <div className="form-control">
           <label>URL Obrázku</label>
           <input
@@ -110,10 +133,11 @@ const AddRecipe = () => {
         <div className="form-control">
           <label>Kategorie</label>
           <select
-          name="category"
-          type="text"
-          value={inputs.category}
-          onChange={handleChange}>
+            name="category"
+            type="text"
+            value={inputs.category}
+            onChange={handleChange}
+          >
             <option>Předkrm</option>
             <option>Hlavní chod</option>
             <option>Dezert</option>
@@ -121,15 +145,37 @@ const AddRecipe = () => {
         </div>
         <div className="form-control">
           <label>Obtížnost</label>
-          <select
-          name="difficulty"
-          type="text"
-          onChange={handleChange}>
+          <select name="difficulty" type="text" onChange={handleChange}>
             <option>Začátečník</option>
             <option>Pokročilý</option>
             <option>Expert</option>
           </select>
         </div>
+        <div className="form-control full-width">
+          <label>Ingredience</label>
+          {ingredientFields.map((ingredientField, index) => {
+              return (
+                <div class="dynamic-inputs">
+                <input type="number" min="0" max="10000" />
+                <select 
+                key={index}
+                name="category"
+                type="text"
+                value={inputs.category}
+                onChange={handleChange}
+                >
+                  {ingredients &&
+                    ingredients.map((ingredient, index) => (
+                      <option name={index} key={ingredient._id}>
+                        {ingredient.name + ' (' + ingredient.unit + ')'}
+                      </option>
+                  ))}
+                </select>
+                </div>
+              )
+            })}
+        </div>
+          <button onClick={addIngredientFields}>Přidat ingredienci</button>
         <div className="btn-wrapper">
           <Link className="btn grey submit" to="/recipes">
             Zrušit

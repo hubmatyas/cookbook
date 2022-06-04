@@ -21,9 +21,9 @@ function App() {
             <Route path="/recipes/add" element={<AddRecipe />} exact />
             <Route path="/recipes" element={<RecipesList />} exact />
             <Route path="/recipes/:id" element={<RecipeDetail />} exact />
-            <Route path="/edit/:id" element={<RecipeUpdate />} exact />
+            <Route path="/recipes/edit/:id" element={<RecipeUpdate />} exact />
             <Route path="/ingredients" element={<IngredientsList />} exact />
-            <Route path="/ingredients/:id" element={<IngredientUpdate />} exact />
+            <Route path="/ingredients/edit/:id" element={<IngredientUpdate />} exact />
             <Route path="/ingredients/add" element={<AddIngredient />} exact />
           </Route>
         </Routes>
