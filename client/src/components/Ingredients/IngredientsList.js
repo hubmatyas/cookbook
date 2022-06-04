@@ -26,16 +26,16 @@ const IngredientsList = () => {
 
   return (
     <>
-      <header>
-        <h1 className="product-title"></h1>
-        <p className="product-description"></p>
-      </header>
-      <section className="container">
+       <section className="subpage-wrapper">
+       <div className="title-wrapper-flex">
+            <h1 className="sectionTitle">Správa ingrediencí</h1>
+            <Link to="/ingredients/add" className="btn nomargin">Přidat</Link>
+        </div>
         <div className="wrapper ingredients-wrapper">
           {ingredients && ingredients.map((ingredient) =>
             <Link className="ingredient-promo" to={`/ingredients/${ingredient._id}`} title="Upravit">
               <strong>{ ingredient.name }</strong><br />
-              <span>Unit: <strong>{ ingredient.unit }</strong></span>
+              <span>Jednotka: <strong>{ ingredient.unit }</strong></span>
             </Link>
           )}
          

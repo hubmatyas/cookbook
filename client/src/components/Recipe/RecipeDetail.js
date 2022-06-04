@@ -38,6 +38,12 @@ const RecipeDetail = () => {
 			</div>
 
 			<div className='article'>
+				{/* Nahodit sem useState multiplier ingrediencí */}
+				<br />
+				<br />
+				<br />
+				<p>Počet porcí: {recipeData.servingCount}</p>
+				<button className="btn">Přidat porci</button>
 
 			</div>	
 		</section>

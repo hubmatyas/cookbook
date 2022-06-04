@@ -46,12 +46,8 @@ const IngredientUpdate = () => {
 
   return (
     <>
-      <header>
-        <h1 className="product-title"></h1>
-        <p className="product-description"></p>
-      </header>
-      <section className="container">
-        <div className="wrapper">
+      <section className="subpage-wrapper">
+      <h1 className="sectionTitle">Úprava ingredience: { inputs.name }</h1>
           {inputs && (
             <form className="add-product-form" onSubmit={handleSubmit}>
               <div className="form-control">
@@ -81,7 +77,6 @@ const IngredientUpdate = () => {
               </button>
             </form>
           )}
-        </div>
       </section>
     </>
   );

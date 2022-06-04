@@ -17,7 +17,7 @@ const Layout = () => {
               <NavLink to="/ingredients">Ingredience</NavLink>
             </li>
             <li>
-              <NavLink to="/add">Přidat recept</NavLink>
+              <NavLink to="/recipes/add">Přidat recept</NavLink>
             </li>
           </ul>
         </div>

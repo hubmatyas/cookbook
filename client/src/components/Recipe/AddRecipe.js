@@ -33,7 +33,7 @@ const AddRecipe = () => {
         prepTime: Number(inputs.prepTime),
         image: String(inputs.image),
         servingCount: String(inputs.servingCount),
-        ingredient: String(inputs.ingredient),
+        ingredients: String(inputs.ingredient),
         category: String(inputs.category),
         difficulty: String(inputs.difficulty),
       })
@@ -50,7 +50,7 @@ const AddRecipe = () => {
       <h1 className="sectionTitle">Přidat recept</h1>
         <form className="add-product-form" onSubmit={handleSubmit} >
           <div className="form-control">
-            <label>Název</label>
+            <label>Název receptu</label>
             <input
               name="name"
               type="text"
@@ -130,12 +130,14 @@ const AddRecipe = () => {
             <option>Expert</option>
           </select>
         </div>
-        <Link className="btn grey submit" to="/recipes">
-          Zrušit
-        </Link>
-        <button type="submit" className="btn submit" onClick={handleSubmit}>
-          Přidat
-        </button>
+        <div className="btn-wrapper">
+          <Link className="btn grey submit" to="/recipes">
+            Zrušit
+          </Link>
+          <button type="submit" className="btn submit" onClick={handleSubmit}>
+            Přidat
+          </button>
+        </div>
       </form>
     </section>
   );

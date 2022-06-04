@@ -50,7 +50,7 @@ const RecipeDetail = () => {
 
   return (
     <>
-      <section className="container">
+      <section className="container subpage-wrapper">
         <div className="wrapper">
           {inputs && (
             <form className="add-product-form" onSubmit={handleSubmit}>

@@ -13,7 +13,7 @@ const Home = () => {
               <br />
               řeckých receptů!
             </h1>
-            <Link to="/add" className="btn">
+            <Link to="/recipes/add" className="btn">
               Přidat recept
             </Link>
           </div>

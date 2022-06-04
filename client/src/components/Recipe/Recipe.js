@@ -19,7 +19,7 @@ const Recipe = (props) => {
   return (
     <>
       <Link className="recipe-promo" to={`/recipes/${_id}`}>
-        <img className="thumb" src={image} alt={name} />
+        <img className="thumb" src={image} alt={name} loading="lazy"/>
         <div className="props">
           <p>Autor: {author}</p>
           <h3>{name}</h3>

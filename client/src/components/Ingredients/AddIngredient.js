@@ -10,6 +10,7 @@ const AddIngredient = () => {
     unit: "",
   });
 
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -19,7 +20,7 @@ const AddIngredient = () => {
 
   const sendRequest = async () => {
     await axios
-      .post("http://localhost:5000/ingradients", {
+      .post("http://localhost:5000/ingredients", {
         name: String(inputs.name),
         unit: String(inputs.unit),
       })
@@ -33,36 +34,42 @@ const AddIngredient = () => {
 
   return (
     <section className="subpage-wrapper">
-      <h1 className="sectionTitle">Přidat recept</h1>
+        <div className="title-wrapper-flex">
+            <h1 className="sectionTitle">Přidat ingredienci</h1>
+        </div>
         <form className="add-product-form" onSubmit={handleSubmit} >
         <div className="form-control">
-            <label>Name</label>
+            <label>Název ingredience</label>
             <input
               name="name"
               type="text"
-              value={inputs.name}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
             <label>Jednotka</label>
             <select
               name="unit"
-              type="text"
-              value={inputs.unit}
               onChange={handleChange}
+              type="text"
+              value="g"
+              required
             >
-                <option>g</option>
-                <option>ml</option>
-                <option>ks</option>
+                <option value="g">g</option>
+                <option value="ml">ml</option>
+                <option value="ks">ks</option>
             </select>
         </div>
-        <Link className="btn grey submit" to="/recipes">
-          Cancel
-        </Link>
-        <button type="submit" className="btn submit" onClick={handleSubmit}>
-          Add recipe
-        </button>
+        <div className="btn-wrapper">
+            <Link className="btn grey" to="/ingredients">
+              Zrušit
+            </Link>
+            <button type="submit" className="btn submit" onClick={handleSubmit}>
+              Přidat
+            </button>
+        </div>
+
       </form>
     </section>
   );

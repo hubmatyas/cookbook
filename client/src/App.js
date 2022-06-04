@@ -9,6 +9,7 @@ import RecipeDetail from "./components/Recipe/RecipeDetail";
 import RecipesList from "./components/Recipe/RecipesList";
 import IngredientsList from "./components/Ingredients/IngredientsList";
 import IngredientUpdate from "./components/Ingredients/IngredientUpdate";
+import AddIngredient from "./components/Ingredients/AddIngredient";
 
 function App() {
   return (
@@ -17,12 +18,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />} exact>
             <Route path="/" element={<Home />} exact />
-            <Route path="/add" element={<AddRecipe />} exact />
+            <Route path="/recipes/add" element={<AddRecipe />} exact />
             <Route path="/recipes" element={<RecipesList />} exact />
             <Route path="/recipes/:id" element={<RecipeDetail />} exact />
             <Route path="/edit/:id" element={<RecipeUpdate />} exact />
             <Route path="/ingredients" element={<IngredientsList />} exact />
             <Route path="/ingredients/:id" element={<IngredientUpdate />} exact />
+            <Route path="/ingredients/add" element={<AddIngredient />} exact />
           </Route>
         </Routes>
       </BrowserRouter>
