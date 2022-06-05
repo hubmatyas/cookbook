@@ -10,7 +10,7 @@ const getAllRecipes = async (req, res, next) => {
   }
 
   if (!recipes) {
-    return res.status(404).json({ message: "Couldn't load any items" });
+    return res.status(404).json({ message: "Nepodařilo se načíst žádné položky" });
   }
 
   return res.status(200).json({ recipes });
@@ -25,7 +25,7 @@ const getById = async (req, res, next) => {
     console.log(err);
   }
   if (!recipe) {
-    return res.status(404).json({ message: "No recipe found" });
+    return res.status(404).json({ message: "Nebyl nalezen žádný recept..." });
   }
 
   return res.status(200).json({ recipe });
@@ -38,7 +38,7 @@ const addRecipe = async (req, res, next) => {
     description,
     servingCount,
     image,
-    ingredient,
+    chosenIngredients,
     category,
     difficulty,
   } = req.body;
@@ -52,17 +52,21 @@ const addRecipe = async (req, res, next) => {
       image,
       category,
       difficulty,
-      ingredients
+      chosenIngredients: [{
+        ingredientName,
+        ingredientCount,
+      }],
     });
     await recipe.save();
   } catch (err) {
     console.log(err);
   }
+  
 
   if (!recipe) {
-    return res.status(500).json({ message: "Unable to add recipe" });
+    return res.status(500).json({ message: "Nastala chyba. Recept nelze přidat." });
   }
-  return res.status(201).json({ recipe });
+  return res.status(201).json({ message: "Recept byl přidaný" });
 };
 
 const updateRecipe = async (req, res, next) => {
@@ -73,7 +77,7 @@ const updateRecipe = async (req, res, next) => {
     description,
     servingCount,
     image,
-    ingredients,
+    chosenIngredients,
     category,
     difficulty,
   } = req.body;
@@ -85,7 +89,7 @@ const updateRecipe = async (req, res, next) => {
       description,
       servingCount,
       image,
-      ingredients,
+      choseningredients,
       category,
       difficulty,
     });
@@ -95,7 +99,7 @@ const updateRecipe = async (req, res, next) => {
   }
 
   if (!recipe) {
-    return res.status(500).json({ message: "Unable to update by this ID" });
+    return res.status(500).json({ message: "Nelze aktualizovat recept s tímto ID" });
   }
   return res.status(201).json({ recipe });
 };
@@ -109,11 +113,11 @@ const deleteRecipe = async (req, res, next) => {
     console.log(err);
   }
   if (!recipe) {
-    return res.status(500).json({ message: "Unable to delete by this ID" });
+    return res.status(500).json({ message: "Nelze smazat recept s tímto ID" });
   }
   return res
     .status(201)
-    .json({ message: "Recipe has been successfuly deleted." });
+    .json({ message: "Recept byl úspěšně smazán" });
 };
 
 exports.getAllRecipes = getAllRecipes;

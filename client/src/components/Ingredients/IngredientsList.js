@@ -28,8 +28,8 @@ const IngredientsList = () => {
             <Link to="/ingredients/add" className="btn nomargin">Přidat</Link>
         </div>
         <div className="wrapper ingredients-wrapper">
-          {ingredients && ingredients.map((ingredient) =>
-            <Link className="ingredient-promo" to={`/ingredients/edit/${ingredient._id}`} title="Upravit">
+          {ingredients && ingredients.map((ingredient, i) =>
+            <Link className="ingredient-promo" to={`/ingredients/edit/${ingredient._id}`} title="Upravit" key={i}>
               <strong>{ ingredient.name }</strong><br />
               <span>Jednotka: <strong>{ ingredient.unit }</strong></span>
             </Link>

@@ -55,6 +55,11 @@ body {
   column-gap: 1.2rem;
   padding-top: 0.1rem; /* To align with the input groups, whatever */
 }
+.btn-wrapper.alignright {
+  width: 100%;
+  justify-content: flex-end;
+  grid-column: span 6;
+}
 .btn,
 a.btn {
   display: inline-block;
@@ -91,13 +96,13 @@ a.btn {
   width: max-content;
   height: auto;
   aspect-ratio: 1/1;
-  padding: 0.3rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .btn-icon svg {
-  width: 3.2rem;
+  width: 1.8rem;
 }
 .btn-icon svg path {
   fill: #fff;
@@ -298,6 +303,11 @@ footer {
 .add-product-form .form-control label {
   font-weight: 500;
 }
+.add-product-form .form-control label span {
+  font-weight: 400;
+  font-size: 0.8em;
+  margin-left: 0.4rem;
+}
 
 .add-product-form .form-control input,
 .add-product-form .form-control textarea,
@@ -352,6 +362,35 @@ footer {
   max-width: 80rem;
   margin: 0 auto;
   padding-top: 8.2rem;
+}
+
+.recipes-wrapper .noresults {
+  grid-column: span 3;
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--primary);
+  font-weight: 400;
+  -webkit-animation: 0.3s fadein ease-out;
+  animation: 0.3s fadein ease-out;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
 }
 
 .recipe-promo-box {
@@ -436,7 +475,8 @@ footer {
   flex-wrap: wrap;
   column-gap: 1.8rem;
   row-gap: 1.8rem;
-  margin-top: 3.2rem;
+  margin-top: 6.4rem;
+  padding: 0;
 }
 .ingredient-promo {
   padding: 0.8rem 1.2rem;

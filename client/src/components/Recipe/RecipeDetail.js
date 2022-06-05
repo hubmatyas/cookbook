@@ -30,16 +30,13 @@ const RecipeDetail = () => {
 				<p>Author: { recipeData.author }</p>
 				<p>Description: { recipeData.description }</p>
 				<img src={ recipeData.image } alt={recipeData.name + ' - hlavní obrázek'} loading="lazy"/>
-				<p>Rating: { recipeData.rating }</p>
 			</div>
 
 			<div className='article'>
-				{/* Nahodit sem useState multiplier ingrediencí */}
-				<br />
-				<br />
-				<br />
-				<p>Počet porcí: {recipeData.servingCount}</p>
-				<button className="btn">Přidat porci</button>
+
+				{recipeData.ingredients && recipeData.ingredients.map((ingredient) =>
+					<p>{ingredient.ingredientName}</p>
+				)}
 
 			</div>	
 		</section>

@@ -23,22 +23,10 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
-  ingredients: [
+  chosenIngredients: [
     {
-      type: Object,
-      required: false,
-      name: {
-        type: String,
-        required: true,
-      },
-      unit: {
-        type: String,
-        required: true,
-      },
-      count: {
-        type: Number,
-        required: true,
-      }
+      ingredientName: String,
+      ingredientCount: Number
     }
   ],
   category: {

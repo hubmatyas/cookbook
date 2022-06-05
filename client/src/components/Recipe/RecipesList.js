@@ -4,6 +4,7 @@ import Recipe from "./Recipe";
 import { ReactComponent as SearchIcon } from "../../res/icons/search.svg";
 
 const URL = "http://localhost:5000/recipes";
+let recipeResult = [];
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
@@ -37,15 +38,20 @@ const RecipesList = () => {
             </div>
         </div>
         <div className="recipes-wrapper">
-          {recipes && recipes.filter((recipe) => {
+          {recipeResult = recipes && recipes.filter((recipe) => {
             if (searchTerm == "") {
               return recipe;
             } else if (recipe.name.toLowerCase().includes(searchTerm.toLowerCase())) {
               return recipe;
+            } else {
+              
             }
           }).map((recipe, i) => 
             <Recipe recipe={recipe} key={i}/>
           )}
+          {!recipeResult || !recipeResult.length &&
+            <h2 className="noresults">Nenašli jsme žádný recept&hellip;</h2>
+          }
         </div>
       </div>
     </section>
